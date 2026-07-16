@@ -1,8 +1,8 @@
 # CLAUDE.md
 
-> Status: `site/` is scaffolded (Astro 7, minimal template). `infra/` is still empty.
-> Items marked _(planned)_ describe intended structure, not existing code. Verify and
-> update as things get built.
+> Status: `site/` has a built static homepage (Astro 7 + Tailwind CSS v4 design
+> system). `infra/` is still empty. Items marked _(planned)_ describe intended
+> structure, not existing code. Verify and update as things get built.
 
 ## 0. Interaction rules (override default behavior)
 
@@ -30,8 +30,8 @@ this CLAUDE.md file (see §3).
 
 ## 1. Project description
 
-Monorepo for **cyb3rflx.dev** — Florian's (GitHub: `cyb3rflx`) personal portfolio +
-blog.
+Monorepo for **cyb3rflx.dev** — Florian's (GitHub: `cyb3rflx`) personal portfolio
+site. (A blog is deferred — out of current scope.)
 
 **Architect view.** Static-first: no servers, no runtime backend, minimal attack
 surface. Astro builds static HTML; a **private** S3 bucket stores it; **CloudFront**
@@ -41,10 +41,13 @@ through a **GitHub OIDC** IAM role — **no stored AWS access keys**. Trust boun
 GitHub Actions assumes a scoped role; only CloudFront can read the bucket.
 
 **Developer view.** Work in `site/` with Astro 7, static output, Node.js ≥ 22.12.
-Blog posts live as **Markdown in Content Collections** _(planned)_. The projects list is
-fetched from the **GitHub API at build time** — curated via a **config file** (an
-explicit allowlist of repos, not "all my repos"). Adding a post = add a Markdown file
-to the blog collection with the required frontmatter; rebuild.
+Styling is **Tailwind CSS v4** — CSS-first `@theme` design tokens in
+`src/styles/global.css`; fonts self-hosted via **Fontsource** (Space Grotesk,
+JetBrains Mono). The static homepage is built from reusable components (Hero, About,
+Projects, CTA; shared `Section`/`Button`/`Eyebrow`). The projects list will be
+fetched from the **GitHub API at build time** — curated via a **config file**
+(explicit allowlist, not "all my repos") _(planned; currently a hardcoded array in
+`Projects.astro`)_.
 
 **Product view.** Audience: **recruiters and hiring managers** — often
 non-deep-technical, skimming fast. The site must communicate, at a glance: what
@@ -71,8 +74,7 @@ Build time:
 
 ```mermaid
 flowchart LR
-    MD[Markdown / Content Collections] --> Astro[Astro build]
-    API[GitHub API - curated repos] --> Astro
+    API[GitHub API - curated repos] --> Astro[Astro build]
     Astro --> Out[Static output]
 ```
 

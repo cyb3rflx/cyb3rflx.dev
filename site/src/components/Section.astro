@@ -1,0 +1,10 @@
+---
+import type { HTMLAttributes } from "astro/types";
+interface Props extends HTMLAttributes<"section"> {}
+
+const { ...rest } = Astro.props;
+---
+
+<section {...rest} class="border-t border-border py-[clamp(48px,7vw,80px)]">
+    <slot />
+</section>

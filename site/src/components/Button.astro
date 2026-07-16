@@ -1,0 +1,10 @@
+---
+interface Props {
+    link: string;
+    text: string;
+}
+
+const { link, text } = Astro.props
+---
+
+<a href={link} class="inline-flex items-center gap-2.5 bg-accent-cyan text-[#06121A] font-bold text-[17px] px-7 py-[15px] rounded-[10px] shadow-[0_0_28px_rgba(34,211,238,0.35)] transition-all hover:shadow-[0_0_40px_rgba(34,211,238,0.55)] hover:-translate-y-px focus-visible:[outline:3px_solid_#E6EDF3] focus-visible:[outline-offset:3px]">{text} <span aria-hidden="true">→</span></a>

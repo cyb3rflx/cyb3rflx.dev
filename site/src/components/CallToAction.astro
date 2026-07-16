@@ -1,0 +1,13 @@
+---
+import Section from "./Section.astro";
+import Button from "./Button.astro";
+---
+
+<Section id="call-to-action" aria-label="Connect">
+    <div class="flex flex-col items-center gap-5 text-center">
+        <img src="/avatar.png" alt="" width="72" height="72" class="rounded-full border border-mid shadow-[0_0_24px_rgba(34,211,238,0.2)]" />
+        <h2 class="text-[clamp(28px,4vw,40px)] font-bold tracking-[-0.01em]">Let's automate something together.</h2>
+        <p class="text-[17px] text-text-muted max-w-[44ch] text-pretty">The fastest way to reach me.</p>
+        <Button link="https://www.linkedin.com/in/florian-steinert/" text="Connect on LinkedIn" />
+    </div>
+</Section>

@@ -1,6 +1,6 @@
 # cyb3rflx.dev
 
-Personal portfolio and blog for Florian ([cyb3rflx](https://github.com/cyb3rflx)).
+Personal portfolio site for Florian ([cyb3rflx](https://github.com/cyb3rflx)).
 
 Static-first: Astro builds the site, a private S3 bucket stores it, and CloudFront
 serves it over HTTPS. Deploys run through GitHub Actions using an OIDC-assumed IAM
@@ -10,12 +10,14 @@ role — no stored AWS keys.
 
 | Path                 | What                                                    |
 | :------------------- | :------------------------------------------------------ |
-| `site/`              | Astro 7 static site — blog + project showcase           |
+| `site/`              | Astro 7 static portfolio site (Tailwind CSS v4)         |
 | `infra/`             | Terraform — S3, CloudFront (OAC), ACM, Route 53, OIDC   |
 | `.github/workflows/` | CI/CD — build → S3 sync → CloudFront invalidation        |
 | `CLAUDE.md`          | Guidance for AI-assisted work in this repo              |
 
-> `site/` is scaffolded. `infra/` and `.github/workflows/` are planned.
+> `site/` has a built static homepage (Astro + Tailwind CSS v4). The GitHub-API
+> project fetch, `infra/`, and `.github/workflows/` are planned. (A blog is out of
+> scope for now.)
 
 ## Local development
 

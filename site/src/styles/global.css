@@ -1,0 +1,28 @@
+@import "tailwindcss";
+@import "@fontsource-variable/space-grotesk/wght.css";
+@import "@fontsource-variable/jetbrains-mono/wght.css";
+
+
+@theme {
+    --color-background: #0A0E14;
+    --color-surface: #0D1117;
+    --color-border: #1E2A38;
+    --color-mid: #334155;
+    --color-text: #E6EDF3;
+    --color-text-muted: #8B98A5;
+    --color-accent-cyan: #22D3EE;
+    --color-accent-magenta: #F43F5E;
+    --font-mono: "JetBrains Mono Variable", monospace;
+    --font-sans: "Space Grotesk Variable", "Helvetica Neue", Arial, sans-serif;
+}
+
+@keyframes visorPulse {
+    0%, 100% { opacity: 0.55; }
+    50% { opacity: 0.85; }
+}
+
+@utility container-page {
+  max-width: 1080px;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}

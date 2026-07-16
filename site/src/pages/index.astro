@@ -1,17 +1,15 @@
 ---
-
+import SiteLayout from "../layouts/SiteLayout.astro"
+import Hero from "../components/Hero.astro"
+import About from "../components/About.astro"
+import Projects from "../components/Projects.astro"
+import CallToAction from "../components/CallToAction.astro"
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<SiteLayout title="cyb3rflx.dev" description="Florian Steinert — Junior DevOps Engineer. CI/CD, containers, automation and cloud infrastructure.">
+	<Hero />
+	<About />
+	<Projects />
+	<CallToAction />
+</SiteLayout>
+

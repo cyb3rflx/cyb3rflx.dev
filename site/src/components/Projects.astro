@@ -1,0 +1,39 @@
+---
+import Section from "./Section.astro"
+import Eyebrow from "./Eyebrow.astro"
+
+const projects = [
+        { title: 'self-hosted k8s cluster', desc: 'Kubernetes cluster on my own hardware: Ubuntu Server, containerd, from bare metal to running workloads.', tags: ['Kubernetes', 'containerd', 'Ubuntu'], repo: 'https://github.com/cyb3rflx', live: '#', dotColor: '#22D3EE' },
+        { title: 'full-stack dashboard', desc: 'FastAPI backend + React/TypeScript frontend with JWT auth, deployed to my cluster via GitHub Actions and GHCR.', tags: ['FastAPI', 'React', 'GitHub Actions'], repo: 'https://github.com/cyb3rflx', live: '#', dotColor: '#F43F5E' },
+        { title: 'jenkins pipelines', desc: 'Complete CI/CD pipelines: build, version increment, push to private Docker registry, deploy.', tags: ['Jenkins', 'Docker', 'Nexus'], repo: 'https://gitlab.com/cyb3rflx-devopsbootcamp', live: '#', dotColor: '#22D3EE' },
+        { title: 'aws infra as code', desc: 'Provisioned EC2, VPC and EKS with Terraform, automated server config with Ansible, deployed via CI/CD.', tags: ['Terraform', 'Ansible', 'AWS EKS'], repo: 'https://gitlab.com/cyb3rflx-devopsbootcamp', live: '#', dotColor: '#F43F5E' },
+        { title: 'k8s monitoring', desc: 'Prometheus + Grafana stack on Kubernetes with alerting for cluster and application metrics.', tags: ['Prometheus', 'Grafana', 'Helm'], repo: 'https://gitlab.com/cyb3rflx-devopsbootcamp', live: '#', dotColor: '#22D3EE' },
+        { title: 'python automation', desc: 'Infrastructure automation with Python and Boto3: monitoring, cleanups and backups.', tags: ['Python', 'Boto3', 'AWS'], repo: 'https://gitlab.com/cyb3rflx-devopsbootcamp', live: '#', dotColor: '#F43F5E' },
+      ]
+---
+
+<Section id="projects" aria-labelledby="projects-h">
+    <div class="flex items-baseline justify-between flex-wrap gap-3 mb-9">
+        <Eyebrow id="projects-h" text="02 / Projects" weight="font-bold" />
+        <a href="https://gitlab.com/cyb3rflx-devopsbootcamp" class="font-mono text-[13px] text-text-muted transition-colors hover:text-accent-cyan rounded-[4px] focus-visible:[outline:2px_solid_#22D3EE] focus-visible:[outline-offset:3px]">all bootcamp projects on GitLab ↗</a>
+    </div>
+    <div class="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-5">
+        {projects.map((project) => (
+            <article class="flex flex-col gap-3.5 bg-surface border border-border rounded-[12px] p-6 transition-all hover:border-[rgba(34,211,238,0.55)] hover:shadow-[0_0_28px_rgba(34,211,238,0.12)] hover:-translate-y-[3px]">
+                <div class="flex items-center justify-between gap-3">
+                    <h3 class="text-[19px] font-semibold">{project.title}</h3>
+                    <span aria-hidden="true" class="font-mono text-xs" style={`color: ${project.dotColor}`}>◆</span>
+                </div>
+                <p class="text-[15px] leading-[1.55] text-text-muted text-pretty">{project.desc}</p>
+                <ul class="list-none flex flex-wrap gap-2">
+                    {project.tags.map((tag) => (
+                        <li class="font-mono text-xs text-accent-cyan bg-[rgba(34,211,238,0.07)] border border-[rgba(34,211,238,0.2)] rounded-[4px] py-[3px] px-2">{tag}</li>
+                    ))}
+                </ul>
+                <div class="flex gap-[18px] mt-auto pt-1.5 text-sm font-semibold">
+                    <a href={project.repo} class="text-text transition-colors hover:text-accent-cyan rounded-[4px] focus-visible:[outline:2px_solid_#22D3EE] focus-visible:[outline-offset:3px]">Repo ↗</a>
+                </div>
+            </article>
+        ))}
+    </div>
+</Section>
