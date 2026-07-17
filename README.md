@@ -15,13 +15,16 @@ role — no stored AWS keys.
 | `.github/workflows/` | CI/CD — build → S3 sync → CloudFront invalidation        |
 | `CLAUDE.md`          | Guidance for AI-assisted work in this repo              |
 
-> `site/` has a built static homepage (Astro + Tailwind CSS v4). The GitHub-API
-> project fetch, `infra/`, and `.github/workflows/` are planned. (A blog is out of
-> scope for now.)
+> `site/` has a built static homepage (Astro + Tailwind CSS v4) with the project
+> list fetched from the GitHub API at build time. `infra/` and `.github/workflows/`
+> are planned. (A blog is out of scope for now.)
 
 ## Local development
 
 Requires **Node.js ≥ 22.12**.
+
+The build fetches the project list from the GitHub API, so it needs a
+`GITHUB_TOKEN` in `site/.env` (a GitHub PAT — no scopes required for public repos).
 
 ```sh
 cd site

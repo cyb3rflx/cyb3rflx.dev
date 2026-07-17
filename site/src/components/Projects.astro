@@ -9,7 +9,6 @@ const projects = await getProjects()
 <Section id="projects" aria-labelledby="projects-h">
     <div class="flex items-baseline justify-between flex-wrap gap-3 mb-9">
         <Eyebrow id="projects-h" text="02 / Projects" weight="font-bold" />
-        <a href="https://gitlab.com/cyb3rflx-devopsbootcamp" class="font-mono text-[13px] text-text-muted transition-colors hover:text-accent-cyan rounded-[4px] focus-visible:[outline:2px_solid_#22D3EE] focus-visible:[outline-offset:3px]">all bootcamp projects on GitLab ↗</a>
     </div>
     <div class="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-5">
         {projects.map((project) => (
@@ -25,7 +24,7 @@ const projects = await getProjects()
                     ))}
                 </ul>
                 <div class="flex gap-[18px] mt-auto pt-1.5 text-sm font-semibold">
-                    <a href={project.repo} class="text-text transition-colors hover:text-accent-cyan rounded-[4px] focus-visible:[outline:2px_solid_#22D3EE] focus-visible:[outline-offset:3px]">Repo ↗</a>
+                    <a href={project.repo} target="_blank" rel="noopener noreferrer" class="text-text transition-colors hover:text-accent-cyan rounded-[4px] focus-visible:[outline:2px_solid_#22D3EE] focus-visible:[outline-offset:3px]">Repo ↗</a>
                 </div>
             </article>
         ))}

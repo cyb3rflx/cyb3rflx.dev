@@ -44,10 +44,10 @@ GitHub Actions assumes a scoped role; only CloudFront can read the bucket.
 Styling is **Tailwind CSS v4** — CSS-first `@theme` design tokens in
 `src/styles/global.css`; fonts self-hosted via **Fontsource** (Space Grotesk,
 JetBrains Mono). The static homepage is built from reusable components (Hero, About,
-Projects, CTA; shared `Section`/`Button`/`Eyebrow`). The projects list will be
-fetched from the **GitHub API at build time** — curated via a **config file**
-(explicit allowlist, not "all my repos") _(planned; currently a hardcoded array in
-`Projects.astro`)_.
+Projects, CTA; shared `Section`/`Button`/`Eyebrow`). The projects list is fetched
+from the **GitHub API at build time** (`src/lib/github.ts`) — curated via an explicit
+allowlist in `src/config/project.ts` (not "all my repos"), authenticated with a
+`GITHUB_TOKEN` read through **`astro:env`** (server secret, lives in `site/.env`).
 
 **Product view.** Audience: **recruiters and hiring managers** — often
 non-deep-technical, skimming fast. The site must communicate, at a glance: what
