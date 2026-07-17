@@ -1,15 +1,9 @@
 ---
 import Section from "./Section.astro"
 import Eyebrow from "./Eyebrow.astro"
+import { getProjects } from "../lib/github"
 
-const projects = [
-        { title: 'self-hosted k8s cluster', desc: 'Kubernetes cluster on my own hardware: Ubuntu Server, containerd, from bare metal to running workloads.', tags: ['Kubernetes', 'containerd', 'Ubuntu'], repo: 'https://github.com/cyb3rflx', live: '#', dotColor: '#22D3EE' },
-        { title: 'full-stack dashboard', desc: 'FastAPI backend + React/TypeScript frontend with JWT auth, deployed to my cluster via GitHub Actions and GHCR.', tags: ['FastAPI', 'React', 'GitHub Actions'], repo: 'https://github.com/cyb3rflx', live: '#', dotColor: '#F43F5E' },
-        { title: 'jenkins pipelines', desc: 'Complete CI/CD pipelines: build, version increment, push to private Docker registry, deploy.', tags: ['Jenkins', 'Docker', 'Nexus'], repo: 'https://gitlab.com/cyb3rflx-devopsbootcamp', live: '#', dotColor: '#22D3EE' },
-        { title: 'aws infra as code', desc: 'Provisioned EC2, VPC and EKS with Terraform, automated server config with Ansible, deployed via CI/CD.', tags: ['Terraform', 'Ansible', 'AWS EKS'], repo: 'https://gitlab.com/cyb3rflx-devopsbootcamp', live: '#', dotColor: '#F43F5E' },
-        { title: 'k8s monitoring', desc: 'Prometheus + Grafana stack on Kubernetes with alerting for cluster and application metrics.', tags: ['Prometheus', 'Grafana', 'Helm'], repo: 'https://gitlab.com/cyb3rflx-devopsbootcamp', live: '#', dotColor: '#22D3EE' },
-        { title: 'python automation', desc: 'Infrastructure automation with Python and Boto3: monitoring, cleanups and backups.', tags: ['Python', 'Boto3', 'AWS'], repo: 'https://gitlab.com/cyb3rflx-devopsbootcamp', live: '#', dotColor: '#F43F5E' },
-      ]
+const projects = await getProjects()
 ---
 
 <Section id="projects" aria-labelledby="projects-h">
