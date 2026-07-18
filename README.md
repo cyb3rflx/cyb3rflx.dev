@@ -16,8 +16,10 @@ role — no stored AWS keys.
 | `CLAUDE.md`          | Guidance for AI-assisted work in this repo              |
 
 > `site/` has a built static homepage (Astro + Tailwind CSS v4) with the project
-> list fetched from the GitHub API at build time. `infra/` and `.github/workflows/`
-> are planned. (A blog is out of scope for now.)
+> list fetched from the GitHub API at build time. `infra/` has a Terraform
+> remote-state backend and the Route 53 hosted zone; the ACM cert, CloudFront, S3
+> site bucket, OIDC, and `.github/workflows/` are still planned. (A blog is out of
+> scope for now.)
 
 ## Local development
 

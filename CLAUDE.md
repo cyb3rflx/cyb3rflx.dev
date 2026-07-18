@@ -1,8 +1,10 @@
 # CLAUDE.md
 
 > Status: `site/` has a built static homepage (Astro 7 + Tailwind CSS v4 design
-> system). `infra/` is still empty. Items marked _(planned)_ describe intended
-> structure, not existing code. Verify and update as things get built.
+> system). `infra/` is scaffolded — Terraform S3 remote-state backend (via
+> `bootstrap/`) + the Route 53 hosted zone (imported). ACM cert, CloudFront/OAC, the
+> site bucket, and GitHub OIDC are still _(planned)_. Items marked _(planned)_
+> describe intended structure, not existing code. Verify and update as things get built.
 
 ## 0. Interaction rules (override default behavior)
 
@@ -91,7 +93,8 @@ npm run preview
 ```
 
 ```bash
-# infra/ (Terraform) — UNVERIFIED, infra/ not scaffolded yet
+# Terraform — verified. Two configs: bootstrap/ (local state, created the
+# remote-state S3 bucket once) and infra/ (uses the S3 backend). Run per dir.
 terraform init
 terraform fmt
 terraform validate
