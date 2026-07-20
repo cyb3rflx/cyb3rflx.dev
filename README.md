@@ -15,11 +15,10 @@ role — no stored AWS keys.
 | `.github/workflows/` | CI/CD — build → S3 sync → CloudFront invalidation        |
 | `CLAUDE.md`          | Guidance for AI-assisted work in this repo              |
 
-> `site/` has a built static homepage (Astro + Tailwind CSS v4) with the project
-> list fetched from the GitHub API at build time. `infra/` has a Terraform
-> remote-state backend and the Route 53 hosted zone; the ACM cert, CloudFront, S3
-> site bucket, OIDC, and `.github/workflows/` are still planned. (A blog is out of
-> scope for now.)
+> `site/` (Astro + Tailwind CSS v4, project list from the GitHub API at build time)
+> is **live** on AWS — private S3 + CloudFront (OAC) + ACM + Route 53, all via
+> Terraform. Deploys are currently manual (`aws s3 sync`); the GitHub OIDC role and
+> `.github/workflows/` CI/CD are still planned. (A blog is out of scope for now.)
 
 ## Local development
 
@@ -38,9 +37,13 @@ npm run preview
 
 ## Deployment
 
-Push to the default branch triggers GitHub Actions, which assumes an AWS IAM role via
-OIDC, syncs the build to S3, and invalidates the CloudFront distribution. All
-infrastructure is managed with Terraform — never the AWS console. _(planned)_
+Infrastructure is managed with Terraform (never the AWS console). Content is
+currently deployed manually: `npm run build`, then `aws s3 sync site/dist/
+s3://cyb3rflx-website/` plus a CloudFront invalidation.
+
+_Planned:_ a push to the default branch triggers GitHub Actions, which assumes an AWS
+IAM role via OIDC, syncs the build to S3, and invalidates the CloudFront distribution
+— no stored AWS keys.
 
 ## License
 

@@ -1,10 +1,11 @@
 # CLAUDE.md
 
-> Status: `site/` has a built static homepage (Astro 7 + Tailwind CSS v4 design
-> system). `infra/` is scaffolded — Terraform S3 remote-state backend (via
-> `bootstrap/`) + the Route 53 hosted zone (imported). ACM cert, CloudFront/OAC, the
-> site bucket, and GitHub OIDC are still _(planned)_. Items marked _(planned)_
-> describe intended structure, not existing code. Verify and update as things get built.
+> Status: `site/` (Astro 7 + Tailwind CSS v4) is **live** on AWS — served from a
+> private S3 bucket via CloudFront (OAC) + ACM + Route 53, all built with Terraform
+> in `infra/` (remote state via `bootstrap/`). Content deploy is currently manual
+> (`aws s3 sync`); the **GitHub OIDC** deploy role and `.github/workflows/` CI/CD are
+> still _(planned)_. Items marked _(planned)_ describe intended structure, not
+> existing code. Verify and update as things get built.
 
 ## 0. Interaction rules (override default behavior)
 

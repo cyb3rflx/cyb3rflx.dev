@@ -34,5 +34,17 @@ resource "aws_route53_record" "main_records" {
 resource "aws_acm_certificate_validation" "main_validation" {
   certificate_arn         = aws_acm_certificate.main_cert.arn
   validation_record_fqdns = [for record in aws_route53_record.main_records : record.fqdn]
-  provider = aws.us_east_1
+  provider                = aws.us_east_1
+}
+
+resource "aws_route53_record" "cloudfront_records" {
+  for_each = toset(["cyb3rflx.dev", "www.cyb3rflx.dev"])
+  name     = each.value
+  type     = "A"
+  zone_id  = aws_route53_zone.main.zone_id
+  alias {
+    name                   = aws_cloudfront_distribution.s3_distribution.domain_name
+    zone_id                = aws_cloudfront_distribution.s3_distribution.hosted_zone_id
+    evaluate_target_health = false
+  }
 }
