@@ -1,11 +1,10 @@
 # CLAUDE.md
 
-> Status: `site/` (Astro 7 + Tailwind CSS v4) is **live** on AWS — served from a
-> private S3 bucket via CloudFront (OAC) + ACM + Route 53, all built with Terraform
-> in `infra/` (remote state via `bootstrap/`). Content deploy is currently manual
-> (`aws s3 sync`); the **GitHub OIDC** deploy role and `.github/workflows/` CI/CD are
-> still _(planned)_. Items marked _(planned)_ describe intended structure, not
-> existing code. Verify and update as things get built.
+> Status: **complete** — `site/` (Astro 7 + Tailwind CSS v4) is live on AWS, served
+> from a private S3 bucket via CloudFront (OAC) + ACM + Route 53, all built with
+> Terraform in `infra/` (remote state via `bootstrap/`). Deploys run automatically on
+> push to `main` via a **GitHub OIDC** role + `.github/workflows/` (build → S3 sync →
+> CloudFront invalidation), no stored AWS keys. (A blog is deferred — out of scope.)
 
 ## 0. Interaction rules (override default behavior)
 

@@ -17,8 +17,8 @@ role — no stored AWS keys.
 
 > `site/` (Astro + Tailwind CSS v4, project list from the GitHub API at build time)
 > is **live** on AWS — private S3 + CloudFront (OAC) + ACM + Route 53, all via
-> Terraform. Deploys are currently manual (`aws s3 sync`); the GitHub OIDC role and
-> `.github/workflows/` CI/CD are still planned. (A blog is out of scope for now.)
+> Terraform. Deploys run automatically on push to `main` via GitHub Actions + OIDC
+> (no stored AWS keys). (A blog is out of scope for now.)
 
 ## Local development
 
@@ -37,13 +37,12 @@ npm run preview
 
 ## Deployment
 
-Infrastructure is managed with Terraform (never the AWS console). Content is
-currently deployed manually: `npm run build`, then `aws s3 sync site/dist/
-s3://cyb3rflx-website/` plus a CloudFront invalidation.
+Infrastructure is managed with Terraform (never the AWS console). A push to `main`
+triggers GitHub Actions, which assumes an AWS IAM role via **OIDC** (no stored keys),
+builds the site, syncs it to S3, and invalidates the CloudFront distribution.
 
-_Planned:_ a push to the default branch triggers GitHub Actions, which assumes an AWS
-IAM role via OIDC, syncs the build to S3, and invalidates the CloudFront distribution
-— no stored AWS keys.
+Manual fallback: `npm run build`, then `aws s3 sync site/dist/ s3://cyb3rflx-website/`
+plus a CloudFront invalidation.
 
 ## License
 
