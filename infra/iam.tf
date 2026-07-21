@@ -19,7 +19,7 @@ data "aws_iam_policy_document" "oidc" {
     }
 
     condition {
-      test     = "StringEquals"
+      test     = "StringLike"
       values   = ["repo:cyb3rflx/cyb3rflx.dev:ref:refs/heads/main"]
       variable = "token.actions.githubusercontent.com:sub"
     }
