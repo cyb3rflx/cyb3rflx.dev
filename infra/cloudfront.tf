@@ -27,6 +27,10 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
     target_origin_id = "s3-website"
     cache_policy_id  = data.aws_cloudfront_cache_policy.caching_optimized.id
 
+    function_association {
+      event_type   = "viewer-request"
+      function_arn = aws_cloudfront_function.www_redirect.arn
+    }
 
     viewer_protocol_policy = "redirect-to-https"
   }
@@ -50,4 +54,10 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
     ssl_support_method       = "sni-only"
     minimum_protocol_version = "TLSv1.2_2021"
   }
+}
+
+resource "aws_cloudfront_function" "www_redirect" {
+  name    = "www-redirect"
+  runtime = "cloudfront-js-2.0"
+  code    = file("${path.module}/functions/www-redirect.js")
 }
