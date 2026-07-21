@@ -1,0 +1,52 @@
+name: Build and deploy static website
+
+on:
+    push:
+        branches:
+            - main
+
+permissions:
+    id-token: write
+    contents: read
+
+env:
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+    deploy:
+        name: Deploy
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+            
+            - name: Setup Node
+              uses: actions/setup-node@v4
+              with:
+                node-version: "22"
+                cache: "npm"
+                cache-dependency-path: site/package-lock.json
+
+            - name: Build
+              run: |
+                   cd site/
+                   npm ci
+                   npm run build
+            
+            - name: AWS OIDC
+              uses: aws-actions/configure-aws-credentials@v4
+              with:
+                role-to-assume: arn:aws:iam::923086211003:role/github-oidc-role
+                aws-region: eu-central-1
+
+            - name: Deploy
+              run: |
+                   aws s3 sync site/dist/ s3://cyb3rflx-website/ --delete
+
+            - name: Invalidation
+              run: |
+                   aws cloudfront create-invalidation --distribution-id ER9AU9SFIBUL4 --paths "/*"
+
+
+
