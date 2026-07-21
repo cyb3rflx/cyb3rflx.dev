@@ -19,8 +19,8 @@ data "aws_iam_policy_document" "oidc" {
     }
 
     condition {
-      test     = "StringLike"
-      values   = ["repo:cyb3rflx/cyb3rflx.dev:*"]
+      test     = "StringEquals"
+      values   = ["repo:cyb3rflx@178774788/cyb3rflx.dev@1301356547:ref:refs/heads/main"]
       variable = "token.actions.githubusercontent.com:sub"
     }
   }
